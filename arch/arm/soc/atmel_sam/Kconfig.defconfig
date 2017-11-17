@@ -10,4 +10,11 @@ config WATCHDOG
 	def_bool y
 
 endif
+
+if FLASH
+
+config SOC_FLASH_SAM_EEFC
+	def_bool y
+
+endif # FLASH
 source "arch/arm/soc/atmel_sam/*/Kconfig.defconfig.series"

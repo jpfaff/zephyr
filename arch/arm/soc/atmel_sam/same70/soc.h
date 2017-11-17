@@ -41,6 +41,12 @@
   #error Library does not support the specified device.
 #endif
 
+#if defined(CONFIG_SOC_FLASH_SAM_EEFC)
+#define FLASH_DRIVER_NAME	CONFIG_SOC_FLASH_SAM_DEV_NAME
+#define soc_iap_send_flash_cmd(index, cmd) \
+		((u32_t (*)(u32_t, u32_t))(*(u32_t*)0x00800008))(index, cmd)
+#endif
+
 #include "soc_pinmap.h"
 
 #include "../common/soc_pmc.h"

@@ -21,10 +21,6 @@
 		};
 	};
 
-	flash0: flash@400000 {
-		reg = <0x00400000 DT_FLASH_SIZE>;
-	};
-
 	sram0: memory@20400000 {
 		device_type = "memory";
 		compatible = "mmio-sram";
@@ -66,6 +62,22 @@
 			peripheral-id = <41>;
 			label = "I2C_2";
 			status = "disabled";
+		};
+
+		flash-controller@400E0C00 {
+			compatible = "atmel,sam-eefc";
+			reg = <0x400E0C00 0x100>;
+			interrupts = <6 0>;
+
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			flash0: flash@400000 {
+				compatible = "soc-nv-flash";
+				reg = <0x00400000 DT_FLASH_SIZE>;
+
+				write-block-size = <16>;
+			};
 		};
 
 		uart0: uart@400E0800 {

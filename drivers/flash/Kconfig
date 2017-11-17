@@ -163,4 +163,19 @@ config SOC_FLASH_MCUX_DEV_NAME
 	help
 	  Specify the device name for the flash driver.
 
+config SOC_FLASH_SAM_EEFC
+	bool "SAM flash driver"
+	depends on SOC_FAMILY_SAM && FLASH
+	default n
+	select FLASH_PAGE_LAYOUT
+	help
+	  Enables the SAM flash driver.
+
+config SOC_FLASH_SAM_DEV_NAME
+	string "SAM flash device name"
+	depends on SOC_FLASH_SAM_EEFC
+	default "SAM_FLASH"
+	help
+	  Specify the device name for the flash driver.
+
 source "drivers/flash/Kconfig.stm32"
